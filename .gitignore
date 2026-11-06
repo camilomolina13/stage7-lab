@@ -1,0 +1,19 @@
+# Variables de entorno (NO subir secretos)
+.env
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+
+# Node / Angular / React
+node_modules/
+dist/
+.angular/
+build/
+
+# Sistema
+.DS_Store
+Thumbs.db
