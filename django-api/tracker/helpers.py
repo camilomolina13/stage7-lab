@@ -31,10 +31,14 @@ def get_json_body(request):
 
 def save_changes(instance, data):
     """Guarda solo si algo cambió realmente (igual que SQLAlchemy en Flask)."""
-    changed = [field for field, value in data.items() if getattr(instance, field) != value]
+    changed = []
+    for field, value in data.items():
+        if getattr(instance, field) != value:
+            setattr(instance, field, value)    # asigna el valor nuevo
+            changed.append(field)
     if changed:
         instance.save(update_fields=changed)
-        instance.refresh_from_db()     # trae el updated_at que puso el trigger
+        instance.refresh_from_db()             # trae el updated_at que puso el trigger
     return instance
 
 

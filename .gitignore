@@ -1,18 +1,27 @@
 # Variables de entorno (NO subir secretos)
 .env
+.env.*
+!.env.example
 
 # Python
 .venv/
 venv/
 __pycache__/
 *.pyc
+*.pyo
 db.sqlite3
+.pytest_cache/
 
 # Node / Angular / React
 node_modules/
 dist/
 .angular/
 build/
+*.log
+
+# Editores
+.vscode/
+.idea/
 
 # Sistema
 .DS_Store
