@@ -21,3 +21,16 @@ CREATE TABLE tasks (
 );
 
 CREATE INDEX idx_tasks_project_id ON tasks(project_id);
+
+CREATE OR REPLACE FUNCTION set_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_tasks_updated_at
+BEFORE UPDATE ON tasks
+FOR EACH ROW
+EXECUTE FUNCTION set_updated_at();
